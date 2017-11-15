@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+	<div>
+		<div class="card height">
+			<div class="card-body">
+				<h4 class="card-title">
+					Name of the delivery boy : <span id="selectedDeliveryBoyName"></span>
+				</h4>
+				<p class="card-text">
+					<strong>Total Distance travel today(for orders which are delivered)</strong> : <span
+						th:text="${deliveryBoy != null} ? ${deliveryBoy.totalDistanceTravelled} : 'N/A'"></span>
+					KM
+				</p>
+				<br>
+				<p class="card-text">
+					<strong>Total Service Charge To Be Collected(for orders which are delivered)</strong> :&#8377; <span
+						id="totalServiceChargeToCollect"
+						th:text="${deliveryBoy != null} ? ${deliveryBoy.totalServiceChargeToCollect} : 'N/A'"></span>
+				</p>
+				<br>
+				<p class="card-text">
+					<strong>Money provided in morning</strong> :&#8377; <span><input
+						id="moneyProvidedInputBox" type="text"
+						th:value="${deliveryBoy != null} ? ${deliveryBoy.totalMoneyProvidedInMorning} : 'N/A'"
+						size="10" disabled="disabled"></span> <input type="hidden"
+						id="oldMoneyProvided"
+						th:value="${deliveryBoy != null} ? ${deliveryBoy.totalMoneyProvidedInMorning} : 'N/A'" />
+
+					<button type="button" onclick="editMoneyProvided();"
+						class="text-uppercase btn btn-sm btn-danger">Edit</button>
+					<button type="button" onclick="SaveMoneyProvided();"
+						class="text-uppercase btn btn-sm btn-success">Save</button>
+					<input type="hidden" th:value="${moneyProvidedInMorning}"
+						id="oldMoneyProvided">
+				</p>
+				<br>
+				<p class="card-text">
+					<strong>Total Submissions</strong> :&#8377; <span
+						th:text="${totalSubmission}"></span>
+				</p>
+				<br> <span th:if="${moneyAlreadySubmitted} == true">
+					<button class="btn btn-info">Money Already Submitted</button>
+				</span>
+				<div th:if="${moneyAlreadySubmitted} == false">
+					<span class="form-group"> <label for="comment">Comment:</label>
+						<textarea class="form-control" rows="5" id="submitMoneyComment"></textarea>
+					</span>
+					<button class="btn btn-success" onclick="submitMoney();">Submit
+						Money</button>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

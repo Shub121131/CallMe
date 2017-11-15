@@ -1,0 +1,183 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+html, body{
+  height: 100%;
+  font-weight: 800;
+}
+.jumbotron{
+  background:#35c7e8;
+  padding: 50px;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+body{
+  background: #5a90e8;
+  font-family: Arial;
+}
+
+svg {
+    display: block;
+    font: 10.5em 'Montserrat';
+    width: 960px;
+    height: 300px;
+    margin: 0 auto;
+    position: sticky;
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+    stroke: white;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: white;
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: white;
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: white;
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: white;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
+
+.cen{
+  padding: 0px;
+  color: white;
+  text-align:center;
+}
+
+.rig{
+  padding: 0px;
+  text-align: right;
+  color: white;
+}
+.lef{
+  padding: 0px;
+  text-align: left;
+  color: white;
+}
+#tagline{
+color: white;
+position:sticky;
+left: 38%;
+top: 45%;
+font-size: 2rem;
+font-family: 'Rokkitt', serif;
+text-align:center;
+padding-bottom: 30px;
+}
+
+#iconship{
+  max-width: 40px;
+  max-height: 40px;
+
+
+}
+
+.navbar{
+  padding: 15px;
+}
+#logoc{
+  max-width: 50%;
+  max-height: 200px;
+  border-radius:20%;
+  box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
+
+}
+#navicon{
+  max-width:60px;
+  max-height:60px;
+
+}
+#service{
+  margin-top: 15px;
+  text-align: center;
+  padding: 50px;
+  background-color:#5a90e8;
+  color: white;
+}
+.service{
+
+  text-align: center;
+  padding: 250px;
+  /*background-color:#e2537c;*/
+  background-color: #e25353;
+  color: white;
+}
+.row{
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.small{
+  max-width: 60px;
+  max-height: 60px;
+  border: 2px solid;
+  border-radius: 100px;
+
+}
+/*testi*/
+#testimonial{
+  font-size: 80px;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+.card p{
+  color: black;
+}
+.card{
+  text-align: center;
+  font-family: 'Pompiere', cursive;
+  font-size: 2rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+#about-us{
+  text-align: center;
+  color: white;
+  padding: 150px;
+  background-color: #76d827;
+}
+hr{
+  border-width: 8px;
+  max-width: 35px;
+  border-color: red;
+}
+.card-body{
+  font-size: 20px;
+}
+.cardround{
+  border-radius: 50px;
+  background-color:#c42727;
+  box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
+}
+.padd{
+  padding-bottom: 50px;
+}

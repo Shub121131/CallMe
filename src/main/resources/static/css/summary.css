@@ -1,0 +1,49 @@
+
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Gafata);
+
+ #map-canvas{
+font-family: 'Gafata', sans-serif;
+font-weight: bold;
+height: 400px;
+width: 100%;
+margin-top: 34px ;
+border : 2px solid white;
+box-shadow: -9px 79px 176px -30px rgba(0,0,0,0.75);
+
+}
+
+#panel {
+
+  top: 10px;
+  left: 100px;
+
+  background-color: #fff;
+  padding: 10px;
+  border-left: 3px solid #0000DD;
+}
+body{
+	font-family: 'Montserrat', sans-serif;
+  background: #614385;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #516395, #614385);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #516395, #614385); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+#costing{
+	font-size: 2rem;
+	padding: 20px;
+	margin: 5px;
+	text-align: center;
+
+}
+.hide{
+	visibility: hidden;
+}
+.align{
+	margin-left: 5px;
+}
+.dis{
+  margin-left: 5px;
+  margin-top: 5px;
+}

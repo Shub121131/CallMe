@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+	integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+	crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/ordernow.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="/js/report.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/report.css">
+
+
+<title>CallNao</title>
+</head>
+<body>
+	
+	<div th:replace="fragments/header:: fixedHeader"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col">
+
+				<div class="card">
+					<table>
+						<tbody>
+							<tr>
+								<td><h3 class="card-title">Daily Report</h3></td>
+							</tr>
+							<tr>
+								<td id="dailyReport"></td>
+								<td><hr width="1" /></td>
+								<td><h3>Details</h3>
+									<div id="statusDaily">
+										<strong>Total Orders: </strong><span id="dailyTotalOrders"
+											th:text="${totalOrdersOfCurrentDate}"> </span>
+										<button class="btn btn-info" onclick="getDetailsOfOrder(1);">Get
+											Details</button>
+										<br> <strong>success Orders: </strong><span
+											id="dailySuccessfullOrders"
+											th:text="${successfullOrdersOfCurrentDate}" class="green">
+										</span>
+										<button class="btn btn-success"
+											onclick="getDetailsOfOrder(2);">Get Details</button>
+										<br> <strong>Failed Orders: </strong><span
+											id="dailyFailedOrders" th:text="${failedOrdersOfCurrentDate}"
+											class="red"> </span>
+										<button class="btn btn-danger" onclick="getDetailsOfOrder(3);">Get
+											Details</button>
+										<br>
+									</div>
+							</tr>
+
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<table>
+						<tbody>
+							<tr>
+								<td><h3 class="card-title">Weekly Report</h3></td>
+							</tr>
+							<tr>
+								<td id="weeklyReport"></td>
+								<td><hr width="1" /></td>
+								<td><h3>Details</h3>
+									<div id="statusweekly">
+										<strong>Total Orders: </strong><span id="weeklyTotalOrders"
+											th:text="${totalOrdersOfWeek}"> </span>
+										<button class="btn btn-info" onclick="getDetailsOfOrder(4);">Get
+											Details</button>
+										<br> <strong>success Orders: </strong><span
+											id="weeklySuccessfullOrders"
+											th:text="${successfullOrdersOfWeek}" class="green"> </span>
+										<button class="btn btn-success"
+											onclick="getDetailsOfOrder(5);">Get Details</button>
+										<br> <strong>Failed Orders: </strong><span
+											id="weeklyFailedOrders" th:text="${failedOrdersOfWeek}"
+											class="red"> </span>
+										<button class="btn btn-danger" onclick="getDetailsOfOrder(6);">Get
+											Details</button>
+										<br>
+									</div>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<table>
+						<tbody>
+							<tr>
+								<td><h3 class="card-title">Monthly Report</h3></td>
+								<td><select id='selectedYear' class="selectpicker"
+									onchange="saveYear(this);">
+										<option selected="selected" disabled>--Select Year--</option>
+										<option value='2015'>2015</option>
+										<option value='2016'>2016</option>
+										<option value='2017'>2017</option>
+										<option value='2018'>2018</option>
+										<option value='2019'>2019</option>
+										<option value='2020'>2020</option>
+										<option value='2021'>2021</option>
+										<option value='2022'>2022</option>
+										<option value='2023'>2023</option>
+										<option value='2024'>2024</option>
+										<option value='2025'>2025</option>
+										<option value='2026'>2026</option>
+										<option value='2027'>2027</option>
+										<option value='2028'>2028</option>
+										<option value='2029'>2029</option>
+										<option value='2030'>2030</option>
+								</select> <select id='selectedMonth' class="selectpicker"
+									onchange="showMonthDetails(this);">
+										<option selected="selected" disabled>--Select Month--</option>
+										<option value='1'>Janaury</option>
+										<option value='2'>February</option>
+										<option value='3'>March</option>
+										<option value='4'>April</option>
+										<option value='5'>May</option>
+										<option value='6'>June</option>
+										<option value='7'>July</option>
+										<option value='8'>August</option>
+										<option value='9'>September</option>
+										<option value='10'>October</option>
+										<option value='11'>November</option>
+										<option value='12'>December</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td id="monthlyReport"></td>
+								<td id="monthlyReportDetails"></td>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div id="orderReportsModal"></div>
+	</div>
+</body>
+</html>

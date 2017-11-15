@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<script src="/js/report.js">
+monthlyOrderschart();
+</script>
+</head>
+<body>
+	<div>
+		<h3>Details</h3>
+		<strong>Total Orders: </strong><span id="monthlyTotalOrders"
+			th:text="${totalOrdersOfMonth}"> </span>
+		<button class="btn btn-info" onclick="getMonthlyDetailsOfOrder(1);">Get
+			Details</button>
+		<br> <strong>Successfull Orders: </strong><span
+			id="monthlySuccessfullOrders" th:text="${successfullOrdersOfMonth}"
+			class="green"> </span>
+		<button class="btn btn-success" onclick="getMonthlyDetailsOfOrder(2);">Get
+			Details</button>
+		<br> <strong>Failed Orders: </strong><span
+			id="monthlyFailedOrders" th:text="${failedOrdersOfMonth}" class="red">
+		</span>
+		<button class="btn btn-danger" onclick="getMonthlyDetailsOfOrder(3);">Get
+			Details</button>
+		<br>
+	</div>
+</body>
+</html>

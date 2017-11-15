@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+	<div class="container">
+		<div class="modal fade" id="orderDetailsModal" role="dialog" tabindex='-1'>
+			<div class="modal-dialog modal-lg">
+
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" style="position: relative;"
+							data-dismiss="modal">&times;</button>
+						<h4 class="modal-title" style="position: absolute;">More
+							Details Of Order...</h4>
+					</div>
+					<div class="modal-body">
+						<div th:if="${moreOrderDetails != null}">
+							<table class="table-hover table-responsive table-bordered">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Client Number</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Distance</th>
+										<th>Item Ordered</th>
+										<th>Product Price</th>
+										<th>Current Status</th>
+										<th>Order Date</th>
+										<th>Delivery Boy Name</th>
+										<th>Delivery Boy Contact</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="moreDetail,count : ${moreOrderDetails}">
+										<td th:text="${count.count}"></td>
+										<td th:text="${moreDetail.customerPhone}"></td>
+										<td th:text="${moreDetail.orderPickedFrom}"></td>
+										<td th:text="${moreDetail.orderDeliveredAt}"></td>
+										<td><span th:text="${moreDetail.totalDistance}"></span>KM
+											(&#8377; <span th:text="${moreDetail.serviceCharge}"></span>)</td>
+										<td th:text="${moreDetail.itemName}"></td>
+										<td th:text="${moreDetail.productCharge}"></td>
+										<td th:text="${moreDetail.orderStatus}"></td>
+										<td th:text="${moreDetail.orderDate}"></td>
+
+										<td><span th:text="${moreDetail.deliveryBoyFirstName}"></span>
+											<span th:text="${moreDetail.deliveryBoyLastName}"></span></td>
+
+
+										<td th:text="${moreDetail.deliveryBoyPhone}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

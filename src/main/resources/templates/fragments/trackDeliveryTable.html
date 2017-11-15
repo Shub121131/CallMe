@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+	<div id="trackOrderTable" class="container" th:fragment="orderDetails">
+		<div th:if="${trackOrderBean != null}">
+
+			<table class="table-hover table-responsive table-bordered">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Client Numbers</th>
+						<th>From</th>
+						<th>To</th>
+						<th>Distance</th>
+						<th>Item Ordered</th>
+						<th>Product Price</th>
+						<th>Current Status</th>
+						<th>Order Date</th>
+						<th>Delivery Boy Name</th>
+						<th>Delivery Boy Contact</th>
+						<th>More Details</th>
+					</tr>
+				</thead>
+				<tr th:each="trackOrder,count : ${trackOrderBean}">
+					<td th:text="${count.count}"></td>
+					<td th:text="${trackOrder.customerPhone}"></td>
+					<td th:text="${trackOrder.orderPickedFrom}"></td>
+					<td th:text="${trackOrder.orderDeliveredAt}"></td>
+					<td><span th:text="${trackOrder.totalDistance}"></span>KM
+						(&#8377; <span th:text="${trackOrder.serviceCharge}"></span>)</td>
+					<td th:text="${trackOrder.itemName}"></td>
+					<td>
+
+						<div th:switch="${trackOrder.orderStatus}">
+							<span th:case="'Pending'"><input type="text"
+								th:value="${trackOrder.productCharge}"
+								th:id="'productPriceOf-' + ${trackOrder.orderNumber}"
+								disabled="disabled" size="10px">
+								<button type="button" class="btn btn-sm btn-danger"
+									th:onclick="'editProductPrice(\'' + ${trackOrder.orderNumber} + '\');'">Edit</button>
+								<button type="button" class="btn btn-sm btn-info"
+									th:onclick="'saveProductPrice(\'' + ${trackOrder.orderNumber} + '\');'"
+									th:id="'saveButton-' + ${trackOrder.orderNumber}" disabled>Save</button></span>
+							<span th:case="'Delivered'"><input type="text"
+								th:value="${trackOrder.productCharge}"
+								th:id="'productPriceOf-' + ${trackOrder.orderNumber}"
+								disabled="disabled" size="10px">
+								<button type="button" class="btn btn-sm btn-danger"
+									th:onclick="'editProductPrice(\'' + ${trackOrder.orderNumber} + '\');'">Edit</button>
+								<button type="button" class="btn btn-sm btn-info"
+									th:onclick="'saveProductPrice(\'' + ${trackOrder.orderNumber} + '\');'"
+									th:id="'saveButton-' + ${trackOrder.orderNumber}" disabled>Save</button></span>
+							<span th:case="'Failed'" th:text="${trackOrder.productCharge}"><span>
+						</div>
+					</td>
+
+					<td>
+						<div th:switch="${trackOrder.orderStatus}">
+							<span th:case="'Pending'"> <select
+								th:id="'currentStatus' + ${trackOrder.orderNumber}"
+								th:onchange="'currentOrderStatusFunc(\'' + ${trackOrder.orderNumber} + '\',this,\'' + ${trackOrder.orderStatus} + '\');'">
+									<option value="Pending" selected>Pending</option>
+									<option value="Delivered">Delivered</option>
+									<option value="Failed">Failed</option>
+							</select>
+							</span> <span th:case="'Delivered'"> <select
+								th:id="'currentStatus' + ${trackOrder.orderNumber}"
+								th:onchange="'currentOrderStatusFunc(\'' + ${trackOrder.orderNumber} + '\',this,\'' + ${trackOrder.orderStatus	} + '\');'">
+									<option value="Pending">Pending</option>
+									<option value="Delivered" selected>Delivered</option>
+									<option value="Failed">Failed</option>
+							</select></span> <span th:case="'Failed'"><span
+								title="Click to see comments of failed status"
+								th:id="'currentStatus' + ${trackOrder.orderNumber}"
+								th:onclick="'failedOrderStatus(\'' + ${trackOrder.orderNumber} + '\');'">Failed</span></span>
+						</div>
+					</td>
+
+
+					<td th:text="${trackOrder.orderDate}"></td>
+
+					<td>
+
+						<div th:switch="${trackOrder.orderStatus}">
+							<input type="hidden" th:value="${trackOrder.deliveryBoyId}"
+								th:id="'deliveryBoy'+${trackOrder.orderNumber}" /> <span
+								th:case="'Pending'"> <select
+								th:onchange="'assignDeliveryBoyFunc(\'' + ${trackOrder.orderNumber} + '\',this);'">
+									<option selected="selected" disabled>Unassigned</option>
+									<option th:each="deliveryBoy : ${deliveryBoysBean}"
+										th:if="${deliveryBoy != null}"
+										th:value="${deliveryBoy.deliveryBoyId}"
+										th:text="${deliveryBoy.deliveryBoyFirstName}+' '+${deliveryBoy.deliveryBoyLastName}"
+										th:selected="${trackOrder.deliveryBoyId==deliveryBoy.deliveryBoyId}"></option>
+							</select>
+							</span> <span th:case="'Delivered'"><select
+								id="DeliveredStatusInDropdown"
+								th:onchange="'assignDeliveryBoyFunc(\'' + ${trackOrder.orderNumber} + '\',this);'">
+									<option disabled="" selected="selected">Unassigned</option>
+									<option th:each="deliveryBoy : ${deliveryBoysBean}"
+										th:if="${deliveryBoy != null}"
+										th:value="${deliveryBoy.deliveryBoyId}"
+										th:text="${deliveryBoy.deliveryBoyFirstName}+' '+${deliveryBoy.deliveryBoyLastName}"
+										th:selected="${trackOrder.deliveryBoyId==deliveryBoy.deliveryBoyId}"></option>
+							</select></span><span th:case="'Failed'"
+								th:text="${trackOrder.deliveryBoyFirstName}+' '+${trackOrder.deliveryBoyLastName}">
+							</span>
+						</div>
+
+					</td>
+					<td th:text="${trackOrder.deliveryBoyPhone}"></td>
+					<td><span th:if="${trackOrder.orderCount > 1 }"><button
+								type="button" id="moreDetailButton"
+								th:onclick="'moreDetails(\'' + ${trackOrder.orderNumber} + '\');'"
+								class="btn btn-info">More Details</button></span></td>
+				</tr>
+			</table>
+
+		</div>
+		<div th:if="${trackOrderBean == null}">
+			<h4>No Data Found</h4>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+	<!-- Modal -->
+	<div class="modal fade" id="failedOrderModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<!-- <button type="button" class="close" style="position:relative;"data-dismiss="modal">&times;</button> -->
+					<h4 class="modal-title" style="position: absolute;">Failed
+						Order Details...</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div th:if="${failedOrderBean != null}">
+							<table class="table-hover table-responsive table-bordered">
+								<thead>
+									<tr>
+										<th>Client Numbers</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Distance</th>
+										<th>Item Ordered</th>
+										<th>Product Price</th>
+										<th>Current Status</th>
+										<th>Comments</th>
+										<th>Order Date</th>
+										<th>Delivery Boy Name</th>
+										<th>Delivery Boy Contact</th>
+									</tr>
+								</thead>
+								<tr th:each="failedOrder : ${failedOrderBean}">
+									<td th:text="${failedOrder.customerPhone}"></td>
+									<td th:text="${failedOrder.orderPickedFrom}"></td>
+									<td th:text="${failedOrder.orderDeliveredAt}"></td>
+									<td><span th:text="${failedOrder.totalDistance}"></span>KM (&#8377; <span
+										th:text="${failedOrder.serviceCharge}"></span>)</td>
+									<td th:text="${failedOrder.itemName}"></td>
+									<td th:text="${failedOrder.productCharge}"></td>
+									<td th:text="${failedOrder.orderStatus}"></td>
+									<td th:text="${failedOrder.comments}"></td>
+									<td th:text="${failedOrder.orderDate}"></td>
+									<td><span th:text="${failedOrder.deliveryBoyFirstName}"></span>
+										<span th:text="${failedOrder.deliveryBoyLastName}"></span></td>
+									<td th:text="${failedOrder.deliveryBoyPhone}"></td>
+
+								</tr>
+							</table>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+body{
+	font-family: 'Montserrat', sans-serif;
+background: #34e89e;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.card{
+	margin-top: 25px;
+	box-shadow: -9px 79px 176px -30px rgba(0,0,0,0.75);
+}
+#map {
+        height: 400px;
+        width: 100%;
+        margin-top: 34px ;
+        border : 2px solid white;
+        box-shadow: -9px 79px 176px -30px rgba(0,0,0,0.75);
+       }
+
+.row{
+
+	border-bottom: 1px solid rgba(60,60,60,.2);
+	margin-bottom: 4px;
+
+}
+	
+	.align {
+		margin-left: 43px;
+	}
+
+
+#result{
+
+	text-align: center;
+	font-size: 25px;
+
+}		
