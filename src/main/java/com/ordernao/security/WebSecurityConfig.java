@@ -28,29 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/**").hasRole("ADMIN").and()
-		.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").and()
+		.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl(OrderNaoConstants.PATH_HOMEPAGE).and()
 		.logout().logoutUrl("/logout")
 		.logoutSuccessUrl("/login?logout");
-
-		/*
-		 * http .authorizeRequests()
-		 * .antMatchers("/login").permitAll().and().formLogin().loginPage(
-		 * "/login")
-		 * .usernameParameter("username").passwordParameter("password").
-		 * permitAll().and().logout()
-		 * .logoutUrl("/logout").permitAll().logoutSuccessUrl("/login?logout");
-		 */
-
-		/*
-		 * http.authorizeRequests().antMatchers(OrderNaoConstants.
-		 * CALL_OPERATOR_LINKS).hasRole("CALL OPERATOR");
-		 * http.authorizeRequests().antMatchers(OrderNaoConstants.MANAGER_LINKS)
-		 * .hasRole("MANAGER");
-		 * http.authorizeRequests().antMatchers(OrderNaoConstants.
-		 * DELIVERY_BOY_LINKS).hasRole("DELIVERY BOY");
-		 * http.authorizeRequests().antMatchers("/**").hasRole("ADMIN");
-		 */
-
 		// Disable csrf for now
 		http.csrf().disable();
 	}
