@@ -124,7 +124,7 @@ public class OrderService {
 			employeeTypeId = OrderNaoConstants.CALL_OPERATOR_TYPE;
 		} else if (employeeType.equals(OrderNaoConstants.DELIVERY_BOY)) {
 			employeeTypeId = OrderNaoConstants.DELIVERY_BOY_TYPE;
-		}else{
+		} else {
 			return status;
 		}
 
@@ -872,14 +872,19 @@ public class OrderService {
 		if (productPrice > 0) {
 			try {
 				int productPriceStatus = dao.saveProductPrice(orderNumber, productPrice);
+
 				if (productPriceStatus > 0) {
-					if (productPriceStatus > 0) {
-						logger.info("Exit at saveProductPrice");
-						return OrderNaoConstants.RETURN_STATUS_SUCCESS;
-					} else {
-						logger.info("Exit at saveProductPrice");
-						return OrderNaoConstants.RETURN_STATUS_ERROR;
+					// after saving product price calculate total amount of
+					// order
+					// which is sum of product charge & service charge(i.e fetch
+					// from DB)
+					double totalAmount = dao.getTotalAmountOfOrder(orderNumber);
+					if (totalAmount > 0) {
+						// save/update total amount in DB corrosponding to order
+						int status = dao.updateTotalAmountOfOrder(totalAmount, orderNumber);
 					}
+					logger.info("Exit at saveProductPrice");
+					return OrderNaoConstants.RETURN_STATUS_SUCCESS;
 				} else {
 					logger.info("Exit at saveProductPrice");
 					return OrderNaoConstants.RETURN_STATUS_SUSPICIOUS_ACTIVITY;

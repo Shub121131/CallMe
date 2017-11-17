@@ -276,4 +276,6 @@ public final class OrderNaoConstants {
 	// public static final String USER_ARRAY[] =
 	// {SAVE_PRODUCT_PRICE,RETURN_STATUS_PRODUCT_PRICE_LESS_THAN_ZERO,RETURN_STATUS_PRODUCT_PRICE_LESS_THAN_ZERO};
 	public static final String CHECK_FAILED_ORDER = "checkFailedOrder";
+	public static final String GET_TOTAL_AMOUNT_OF_ORDER = "calculateTotalAmountOfOrder";
+	public static final String UPDATE_TOTAL_AMOUNT_OF_ORDER = "updateTotalAmountOfOrder";
 }

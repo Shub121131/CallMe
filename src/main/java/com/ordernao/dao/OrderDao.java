@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-	
+
 import com.ordernao.bean.DeliveryBoyPaymentBean;
 import com.ordernao.bean.EmployeeBean;
 import com.ordernao.bean.OrderBean;
@@ -843,6 +843,23 @@ public class OrderDao {
 		int result = (Integer) jdbcTemplate.queryForObject(sqlQuery, new Object[] { orderNumber }, Integer.class);
 		logger.info("Exit at checkOrderStatus");
 		return result;
+	}
+
+	public double getTotalAmountOfOrder(int orderNumber) {
+		logger.info("Entry at getTotalAmountOfOrder");
+		String sqlQuery = property.getProperty(OrderNaoConstants.GET_TOTAL_AMOUNT_OF_ORDER);
+		double result = (Double) jdbcTemplate.queryForObject(sqlQuery, new Object[] { orderNumber }, Double.class);
+		logger.info("Exit at getTotalAmountOfOrder");
+		return result;
+	}
+
+	public int updateTotalAmountOfOrder(double totalAmount, int orderNumber) {
+		logger.info(
+				"Entry at updateTotalAmountOfOrder orderNumber :- " + orderNumber + " total amount :- " + totalAmount);
+		String query = property.getProperty(OrderNaoConstants.UPDATE_TOTAL_AMOUNT_OF_ORDER);
+		logger.info("Exit at updateTotalAmountOfOrder");
+		return jdbcTemplate.update(query, new Object[] { totalAmount, orderNumber });
+
 	}
 
 }
