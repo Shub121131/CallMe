@@ -272,13 +272,7 @@ public final class OrderNaoConstants {
 	public static final String RETURN_STATUS_PRODUCT_PRICE_LESS_THAN_ZERO = "productPriceLessThanZero";
 	public static final String SAVE_PRODUCT_PRICE = "saveProductPrice";
 	public static final String PATH_HOMEPAGE = "/homepage.html";
-	public static final String PATH_HOME="/";
-	public static final String[] CALL_OPERATOR_LINKS = {PATH_HOME, PATH_HOMEPAGE, PATH_SUMMARY_HTML_PAGE,
-			PATH_SAVE_CONTACT_NUMBER };
-	public static final String[] MANAGER_LINKS = { PATH_HOME,PATH_HOMEPAGE, PATH_SUMMARY_HTML_PAGE, PATH_TRACK_DELIVERY_HTML_PAGE,
-			PATH_SAVE_CONTACT_NUMBER };
-	public static final String[] DELIVERY_BOY_LINKS = {};
-
+	public static final String PATH_HOME = "/";
 	// public static final String USER_ARRAY[] =
 	// {SAVE_PRODUCT_PRICE,RETURN_STATUS_PRODUCT_PRICE_LESS_THAN_ZERO,RETURN_STATUS_PRODUCT_PRICE_LESS_THAN_ZERO};
 	public static final String CHECK_FAILED_ORDER = "checkFailedOrder";

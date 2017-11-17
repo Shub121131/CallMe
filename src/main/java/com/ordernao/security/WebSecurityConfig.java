@@ -22,13 +22,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		/*.antMatchers(OrderNaoConstants.CALL_OPERATOR_LINKS).hasRole("CALLOPERATOR")
-		.antMatchers(OrderNaoConstants.MANAGER_LINKS).hasRole("MANAGER")
-		.antMatchers(OrderNaoConstants.DELIVERY_BOY_LINKS).hasRole("DELIVERYBOY")*/
+		.antMatchers("/homepage.html","/summary.html").hasAnyRole("CALLOPERATOR","MANAGER","ADMIN")
+		.antMatchers("/save-contact-number").hasAnyRole("CALLOPERATOR","MANAGER","ADMIN")
+		.antMatchers("/trackdelivery.html").hasAnyRole("MANAGER","ADMIN")
 		.antMatchers("/").permitAll()
 		.antMatchers("/login").permitAll()
-		.antMatchers("/**").hasRole("ADMIN").and()
-		.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl(OrderNaoConstants.PATH_HOMEPAGE).and()
+		.antMatchers("/**").hasRole("ADMIN")
+		.and().
+			formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl(OrderNaoConstants.PATH_HOMEPAGE).and()
 		.logout().logoutUrl("/logout")
 		.logoutSuccessUrl("/login?logout");
 		// Disable csrf for now
